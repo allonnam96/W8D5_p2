@@ -16,13 +16,13 @@ function _makeGrid() {
   // }
   // return Board;
 
- let grid = new Array(8).fill(null).map(() => new Array(8).fill(undefined));
- grid[3][3] = new Piece("white");
- grid[3][4] = new Piece("black");
- grid[4][3] = new Piece("black");
- grid[4][4] = new Piece("white");
-  
- return grid
+let grid = new Array(8).fill(null).map(() => new Array(8).fill(undefined));
+grid[3][3] = new Piece("white");
+grid[3][4] = new Piece("black");
+grid[4][3] = new Piece("black");
+grid[4][4] = new Piece("white");
+
+return grid
 }
 
 /**
@@ -68,13 +68,26 @@ Board.prototype.getPiece = function (pos) {
  * matches a given color.
  */
 Board.prototype.isMine = function (pos, color) {
-  
+  let piece = this.getPiece(pos)
+
+  if (piece === undefined) {
+    return false
+  } else {
+    return piece.color === color
+  }
 };
 
 /**
  * Checks if a given position has a piece on it.
  */
 Board.prototype.isOccupied = function (pos) {
+  let piece = this.getPiece(pos)
+
+  if (piece === undefined) {
+    return false
+  } else {
+    return true
+  }
 };
 
 /**
@@ -91,6 +104,10 @@ Board.prototype.isOccupied = function (pos) {
  * Returns empty array if no pieces of the opposite color are found.
  */
 Board.prototype._positionsToFlip = function (pos, color, dir, piecesToFlip) {
+
+  if (!isValidPos || pos === undefined) {
+    return piecesToFlip
+  }
 }
 
 /**
